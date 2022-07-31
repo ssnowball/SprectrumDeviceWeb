@@ -1,0 +1,34 @@
+cat <<'EOF' > /etc/systemd/system/spectrumdeviceweb.service
+[Unit]
+Description=spectrumdeviceweb
+AssertPathExists=/home/pi/SprectrumDeviceWeb
+
+
+[Service]
+WorkingDirectory=/home/pi/SprectrumDeviceWeb
+ExecStart=/home/pi/SprectrumDeviceWeb/spectrumdeviceweb
+
+
+ExecReload=/bin/kill -HUP $MAINPID
+LimitNOFILE=65536
+Restart=always
+RestartSec=1
+
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+
+
+chmod 644 /etc/systemd/system/spectrumdeviceweb.service
+sudo systemctl daemon-reload
+sudo systemctl enable spectrumdeviceweb
+
+sudo systemctl start spectrumdeviceweb
+sudo systemctl status spectrumdeviceweb
+
+export PATH=$PATH:/usr/local/go/bin
+
+
+sudo nano /etc/systemd/system/spectrumdeviceweb.service

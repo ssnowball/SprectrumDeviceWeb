@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,viewport-fit=cover">
+    <title>Colour Read</title>
+    <meta name="description" content="Colour Read">
+    <link rel="stylesheet" href="/assets/normalize.css">
+    <link rel="stylesheet" href="/assets/skeleton.css">
+
+   <link rel="stylesheet" href="/assets/style.css">
+</head>
+
+<body>
+
+    <div class="container full-container">
+
+        <!-- columns should be the immediate child of a .row -->
+        <div class="row header-height">
+            <div class="three columns">
+                <div id="timeNow" class="timer"></div>
+            </div>
+            <div class="six columns top-center"><strong>Colour Read</strong></div>
+            <div class="three columns"><img class="u-pull-right top-center" src="/assets/Magna-Logo-MR-V1.0.png"
+                    alt="Magna Logo" width="200" height="40"></div>
+        </div>
+        <br />
+
+        <div class="row">
+            <a class="button button-primary" href="#" id="dataRun">Run</a>
+            <br />
+            <div id="timeNow" class="timer"></div>
+            <br />
+            <div class="row">
+                <div class="six columns">
+                    <label for="results-serial">Serial Number</label>
+                    <input class="u-full-width" type="text" id="results-serial" disabled>
+                </div>
+                <div class="six columns">
+                    <label for="results-colour">Colour Number</label>
+                     <input class="u-full-width" type="text" id="results-colour" disabled>
+                </div>
+            </div>            
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="/assets/moment.js"></script>
+    <script type="text/javascript" src="/assets/loadingOverlay.js"></script>
+    <script type="text/javascript" src="/assets/moment-timezone.js"></script>
+
+    <script>
+
+        var spinHandle;
+
+        function results(data) {
+
+            console.log(data);
+
+            document.getElementById("results-serial").value = data.Serial;
+            document.getElementById("results-colour").value = data.ColorNo;
+            
+                    document.getElementById("timeNow").innerText = moment().tz('Europe/London').format(
+                "dddd, Do MMMM YYYY @ HH:mm:ss");
+
+                loadingOverlay.cancel(spinHandle);
+
+                }
+
+    document.getElementById("dataRun").addEventListener("click", function (event) {
+        event.preventDefault();
+
+        spinHandle = loadingOverlay.activate();
+
+        fetch('/READ').then(response => response.json()).then(data => results(data.data));
+        });
+
+    </script>
+
+
+</body>
+
+</html>

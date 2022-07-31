@@ -1,0 +1,68 @@
+.full-container {
+    width: 98% !important;
+    max-width: 98% !important;
+}
+
+.header-height {
+    height: 10vh;
+    text-align: center;
+    font-size: 5vh;
+}
+
+.center-align {
+    text-align: center !important;
+}
+
+
+.outterCrane {
+    text-align: center !important;
+    height: 80vh;
+    padding: 0.5em;
+}
+
+.dual {
+    background-color: green;
+    color: white;
+}
+
+.input {
+    background-color: #FFFF80;
+    color: white;
+}
+
+.maintenance {
+    background-color: purple;
+    color: white;
+}
+
+.offline {
+    background-color: aqua;
+    color: white;
+}
+
+.output {
+    background-color: #80FF80;
+    color: white;
+}
+
+.error {
+    background-color: red;
+    color: white;
+}
+
+.craneName {
+    font-size: 10vh;
+}
+
+.craneState {
+    font-size: 7vh;
+}
+
+.craneCode {
+    padding: 0.5em;
+    font-size: 5vh;
+}
+
+.timer {
+    font-size: 2vh !important; 
+}
